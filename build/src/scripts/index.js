@@ -35,7 +35,7 @@ const DOMAINS = {
     }
 }
 
-const BAN_SLOGANS = [/ukr/, /blm/, /укр/, /блм/, /ua/, /ucrania/]
+const BAN_SLOGANS = [/ukr/, /blm/, /укр/, /blacklivesmatter/, /блм/, /ucrania/]
 
 
 let isFirstLoading = true;
@@ -50,7 +50,7 @@ function findTextContent(el){
     let isElContainText = false;
 
     for(let word of BAN_SLOGANS){
-        if(word.test(el.textContent.trim().toLowerCase())){
+        if(word.test(el.textContent.replace(/ /g,'').toLowerCase())){
             isElContainText = true;
             break;
         }
@@ -71,15 +71,17 @@ function findTextContent(el){
 
 
 function removeReactBanners() {
-    const targetBanner = document.querySelector('header');
+    const targetBanner = document.querySelector('header')?.childNodes[0];
 
-    if (targetBanner && findTextContent(targetBanner)) {
-        targetBanner.childNodes[0].remove();
+    if(targetBanner && findTextContent(targetBanner)){
+        targetBanner.remove();
     }
 }
 
 function removeAngularBanners(){
-    const targetBanner = document.querySelector('.mat-toolbar-row.notification-container');
+    const TARGET_BANNER_ELEMENT_SELECTOR = '.mat-toolbar-row.notification-container';
+
+    const targetBanner = document.querySelector(TARGET_BANNER_ELEMENT_SELECTOR);
 
     if (targetBanner && findTextContent(targetBanner.childNodes[0])) {
         targetBanner.remove();
@@ -88,9 +90,11 @@ function removeAngularBanners(){
 
 function removeNgRxBanners(){
     let timerNumber = undefined;
+    const NGRX_TIME_TO_RERENDER = 400;
+    const TARGET_BANNER_ELEMENT_SELECTOR = 'ngrx-mff';
 
     if(isFirstLoading){
-        let targetBanner = document.querySelector('ngrx-mff');
+        let targetBanner = document.querySelector(TARGET_BANNER_ELEMENT_SELECTOR);
 
         if(targetBanner && findTextContent(targetBanner)){
             targetBanner.remove();
@@ -99,19 +103,23 @@ function removeNgRxBanners(){
         window.clearTimeout(timerNumber);
 
         timerNumber = window.setTimeout(()=>{
-            let targetBanner = document.querySelector('ngrx-mff');
+            let targetBanner = document.querySelector(TARGET_BANNER_ELEMENT_SELECTOR);
 
             if(targetBanner && findTextContent(targetBanner)){
                 targetBanner.remove();
             }
-        }, 400)
+        }, NGRX_TIME_TO_RERENDER)
 
     }
 
 }
 
 function removeSvelteBanners() {
-    window.requestAnimationFrame(() => {
+    let svelteRafID = undefined;
+    const SVELTE_ICON = '/src/img/stopwar.svg';
+
+    window.cancelAnimationFrame(svelteRafID);
+    svelteRafID = window.requestAnimationFrame(() => {
         const targetIconBanner = document.querySelector('nav').childNodes[0];
         const targetFooterBanner = document.querySelector("body > div > a:nth-child(5)");
 
@@ -121,7 +129,7 @@ function removeSvelteBanners() {
 
 
         if (targetIconBanner) {
-            targetIconBanner.style.backgroundImage = `url("${chrome.runtime.getURL('/src/img/stopwar.svg')}")`;
+            targetIconBanner.style.backgroundImage = `url("${chrome.runtime.getURL(SVELTE_ICON)}")`;
         }
     })
 }
