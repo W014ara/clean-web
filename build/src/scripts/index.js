@@ -15,27 +15,27 @@ chrome.runtime.onMessage.addListener(
 //////////////////////////////////////////////////////////////////// VARIABLES //////////////////////////////////////
 const DOMAINS = {
     'react': {
-        'domains': ['reactjs.org'],
+        'domains': /reactjs\.org/,
         'script': removeReactBanners,
     },
 
     'angular': {
-        'domains': ['angular.io'],
+        'domains': /angular\.io/,
         'script': removeAngularBanners,
     },
 
     'ngrx': {
-        'domains': ['ngrx.io'],
+        'domains': /ngrx\.io/,
         'script': removeNgRxBanners,
     },
 
     'svelte': {
-        'domains': ['kit.svelte.dev', 'svelte.dev'],
+        'domains': /svelte\.dev/,
         'script': removeSvelteBanners,
     }
 }
 
-const BAN_SLOGANS = [/ukr/, /blm/]
+const BAN_SLOGANS = [/ukr/, /blm/, /укр/, /блм/, /ua/, /ucrania/]
 
 
 let isFirstLoading = true;
@@ -80,9 +80,8 @@ function removeReactBanners() {
 
 function removeAngularBanners(){
     const targetBanner = document.querySelector('.mat-toolbar-row.notification-container');
-    const targetRegExp = /ukr/;
 
-    if (targetBanner && targetRegExp.test(targetBanner.childNodes[0].getAttribute("notificationid"))) {
+    if (targetBanner && findTextContent(targetBanner.childNodes[0])) {
         targetBanner.remove();
     }
 }
@@ -132,7 +131,7 @@ function main(){
     const currentDomain = window.location.hostname;
 
     for(const key of Object.keys(DOMAINS)){
-        if(DOMAINS[key].domains.includes(currentDomain)){
+        if(currentDomain.match(DOMAINS[key].domains)){
             DOMAINS[key].script();
             return;
         }

@@ -1,7 +1,7 @@
 {
   "name": "Clean Web",
   "description": "This is a plugin that removes and (or) replaces elements of political hypocritical propaganda on web resources.",
-  "version": "1.0",
+  "version": "1.0.1",
   "manifest_version": 3,
   "icons": {
     "16": "src/icon/ico16.png",
