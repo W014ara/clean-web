@@ -47,13 +47,13 @@ All With Chromium Engine
 
 <td>
 
-| Browser     | Support    |
-|-------------|------------|
-| reactjs.org | Full ✔️    |
-| svelte.dev  | Full ✔️    |
-| angular.io  | Full ✔️    |
-| ngrx.io     | Full ✔️    |
-|             | ️          |
+| Web Resource | Support    |
+|--------------|------------|
+| reactjs.org  | Full ✔️    |
+| svelte.dev   | Full ✔️    |
+| angular.io   | Full ✔️    |
+| ngrx.io      | Full ✔️    |
+|              | ️          |
 
 </td>
 </tr> 
