@@ -7,17 +7,19 @@ Ukraine). There should be no hypocrisy!
 
 # Getting Started
 
-1. Unzip <u><b>build directory</b></u> to any directory on your PC
+1. Download this project via ZIP
 
-2. Go to any browser that uses Chromium (Chrome, Opera, Yandex etc.)
+2. Unzip <u><b>build directory</b></u> to any directory on your PC
 
-3. Go to URL chrome://extensions or opera://extensions etc.
+3. Go to any browser that uses Chromium (Chrome, Opera, Yandex etc.)
 
-4. Enable "Developer Mode"
+4. Go to URL chrome://extensions
 
-5. Press "Load unpacked extension"
+5. Enable "Developer Mode"
 
-6. Specify the path to the unpacked directory
+6. Press "Load unpacked extension"
+
+7. Specify the path to the unpacked directory
 
 ---
 
