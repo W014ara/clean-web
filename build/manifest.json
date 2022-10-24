@@ -18,7 +18,11 @@
         "*://*.reactjs.org/*",
         "*://*.svelte.dev/*",
         "*://*.angular.io/*",
-        "*://*.ngrx.io/*"
+        "*://*.ngrx.io/*",
+        "*://*.sveltematerialui.com/*"
+      ],
+      "css": [
+        "/src/style/index.css"
       ],
       "js": [
         "/src/scripts/index.js"

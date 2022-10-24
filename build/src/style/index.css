@@ -1,0 +1,7 @@
+._clean-web-remover._svelte-material-ui {
+  padding-top: 0 !important;
+}
+._clean-web-remover._svelte-material-ui:after {
+  display: none !important;
+}
+/*# sourceMappingURL=index.css.map */

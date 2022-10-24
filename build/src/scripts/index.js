@@ -32,6 +32,11 @@ const DOMAINS = {
     'svelte': {
         'domains': /svelte\.dev/,
         'script': removeSvelteBanners,
+    },
+
+    'sveltematerialui': {
+        'domains': /sveltematerialui\.com/,
+        'script': removeSvelteMaterialUIBanners,
     }
 }
 
@@ -132,6 +137,10 @@ function removeSvelteBanners() {
             targetIconBanner.style.backgroundImage = `url("${chrome.runtime.getURL(SVELTE_ICON)}")`;
         }
     })
+}
+
+function removeSvelteMaterialUIBanners() {
+    document.body.classList.add("_clean-web-remover", "_svelte-material-ui");
 }
 
 
